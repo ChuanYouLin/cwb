@@ -6,25 +6,28 @@ import argparse
 def train(x_train, y_train, epoch, lr, size, model):
 	best = 1000000000000
 	w = np.zeros([size, 1])
-	w_pre_grad = 0
-
 	w_best = np.zeros([size, 1])
+	
+	# square of previous gradients
+	w_pre_grad = 0
 	
 	for i in range(epoch):
 		
 		# x_transpose = (163, 5751)
 		x_train_t = x_train.transpose()
-		# y = (5751, 1)
-		# w = (163, 1)
-		# gradient = (163, 1)
+		
+		# calculate gradient
+		# y = (5751, 1), w = (163, 1), w_grad = (163, 1)
 		w_grad = -2 * x_train_t.dot(y_train - x_train.dot(w))
 		# calculate sigma_t
 		w_pre_grad += w_grad.transpose().dot(w_grad)
 		w_ada = w_pre_grad ** 0.5
+		
 		# gradient descent
 		w -= w_grad * lr / w_ada
-		# x = (5751, 163)
+		
 		# predict
+		# x = (5751, 163)
 		ans = x_train.dot(w)
 
 		# Root Mean Square Error
@@ -106,7 +109,7 @@ def main():
                         help="Total number of training epochs to perform.")
 	args = parser.parse_args()
 	
-	doc = "train.csv"
+	doc = "../data/train.csv"
 	model = "model.npy"
 	
 	# prepare data

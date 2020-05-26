@@ -1,9 +1,16 @@
 # 實戰教學
 ## 安裝環境
-Be sure you have miniconda(anaconda).
-Create environment:
+直接安裝我們提供的環境:
 ```
+# Create environment
 conda env create -f environment.yaml
+```
+開一個環境裝Pytorch:
+```
+# Create environment
+conda create --name cwb python=3.6
+# Pytorch no_gpu for windows/linux
+conda install pytorch torchvision cpuonly -c pytorch
 ```
 ## 預測pm2.5
 Check usage:

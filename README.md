@@ -1,4 +1,10 @@
 # 實戰教學
+## 安裝環境
+Be sure you have miniconda(anaconda).
+Create environment:
+```
+conda env create -f environment.yaml
+```
 ## 預測pm2.5
 Check usage:
 ```

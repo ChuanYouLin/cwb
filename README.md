@@ -1,5 +1,6 @@
 # 實戰教學
 ## 安裝環境
+Be sure you have installed miniconda or anaconda.<br>
 直接安裝我們提供的環境:
 ```
 # Create environment

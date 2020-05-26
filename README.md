@@ -6,7 +6,7 @@ Be sure you have installed miniconda or anaconda.<br>
 # Create environment
 conda env create -f environment.yaml
 ```
-開一個環境裝Pytorch:
+或者自己開一個環境裝Pytorch:
 ```
 # Create environment
 conda create --name cwb python=3.6

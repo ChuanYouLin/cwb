@@ -27,3 +27,11 @@ Training and evaluation:
 python main.py --do_train --do_eval
 ```
 ## 數字辨識
+Check usage:
+```
+python main.py -h
+```
+Training and evaluation:
+```
+python main.py
+```

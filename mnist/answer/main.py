@@ -47,7 +47,7 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(128, 10)
 
     def forward(self, x):
-        # x size = (24, 24)
+        # x size = (28, 28)
         x = self.conv1(x)
         x = F.relu(x)
         x = self.conv2(x)

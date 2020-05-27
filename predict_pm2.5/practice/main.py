@@ -14,12 +14,10 @@ def train(x_train, y_train, epoch, lr, size, model):
 	for i in range(epoch):	
 		######### to-do ##########
 		
-		
+		# y size = (5751, 1), w size = (163, 1), w_grad size = (163, 1)
 		# calculate gradient
-		
-		
-		# gradient descent
 
+		# gradient descent
 
 		######### to-do ##########	
 		

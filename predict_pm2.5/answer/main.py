@@ -13,11 +13,11 @@ def train(x_train, y_train, epoch, lr, size, model):
 	
 	for i in range(epoch):
 		
-		# x_transpose = (163, 5751)
+		# x_transpose size = (163, 5751)
 		x_train_t = x_train.transpose()
 		
 		# calculate gradient
-		# y = (5751, 1), w = (163, 1), w_grad = (163, 1)
+		# y size = (5751, 1), w size = (163, 1), w_grad size = (163, 1)
 		w_grad = -2 * x_train_t.dot(y_train - x_train.dot(w))
 		# calculate sigma_t
 		w_pre_grad += w_grad.transpose().dot(w_grad)
@@ -27,7 +27,7 @@ def train(x_train, y_train, epoch, lr, size, model):
 		w -= w_grad * lr / w_ada
 		
 		# predict
-		# x = (5751, 163)
+		# x size = (5751, 163)
 		ans = x_train.dot(w)
 
 		# Root Mean Square Error

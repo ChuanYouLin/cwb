@@ -24,7 +24,7 @@ def train(x_train, y_train, epoch, lr, size, model):
 		######### to-do ##########	
 		
 		# predict
-		# x = (5751, 163)
+		# x size = (5751, 163)
 		ans = x_train.dot(w)
 
 		# Root Mean Square Error

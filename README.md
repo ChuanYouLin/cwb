@@ -27,6 +27,11 @@ Training and evaluation:
 python main.py --do_train --do_eval
 ```
 ## 數字辨識
+unzip dataset:
+```
+cd data/
+unzip mnist_png.zip
+```
 Check usage:
 ```
 python main.py -h
@@ -34,4 +39,11 @@ python main.py -h
 Training and evaluation:
 ```
 python main.py
+```
+Predict:
+```
+python predict.py <file_path>
+
+for example:
+python predict.py ../data/mnist_png/testing/0/3.png
 ```

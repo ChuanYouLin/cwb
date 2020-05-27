@@ -1,12 +1,40 @@
 from __future__ import print_function
 import argparse
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
+from PIL import Image
 
+class MnistDataset(torch.utils.data.Dataset):
+    def __init__(self, data_dir):
+        tfms = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,))
+        ])
+        labels = os.listdir(data_dir)
+        labels.sort()
+
+        self.imgs = []
+        self.labs = []
+
+        for label in labels:
+            image_dir = os.path.join(data_dir, label)
+            files = os.listdir(image_dir)
+            for f in files:
+                fpath = os.path.join(image_dir, f)
+                img = tfms(Image.open(fpath))
+                self.imgs.append(img)
+                self.labs.append(int(label))
+
+    def __getitem__(self, idx):
+        return self.imgs[idx], self.labs[idx]
+    
+    def __len__(self):
+        return len(self.imgs)
 
 class Net(nn.Module):
     def __init__(self):
@@ -99,18 +127,12 @@ def main():
     device = torch.device("cuda" if use_cuda else "cpu")
 
     kwargs = {'num_workers': 1, 'pin_memory': True} if use_cuda else {}
+    
     train_loader = torch.utils.data.DataLoader(
-        datasets.MNIST('../data', train=True, download=True,
-                       transform=transforms.Compose([
-                           transforms.ToTensor(),
-                           transforms.Normalize((0.1307,), (0.3081,))
-                       ])),
+        MnistDataset('../data/mnist_png/training'),
         batch_size=args.batch_size, shuffle=True, **kwargs)
     test_loader = torch.utils.data.DataLoader(
-        datasets.MNIST('../data', train=False, transform=transforms.Compose([
-                           transforms.ToTensor(),
-                           transforms.Normalize((0.1307,), (0.3081,))
-                       ])),
+        MnistDataset('../data/mnist_png/testing'),
         batch_size=args.test_batch_size, shuffle=True, **kwargs)
 
     model = Net().to(device)
